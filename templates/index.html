@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Dashboard</h2>
+                <p class="text-muted m-0">Welcome back, <span class="text-primary fw-semibold">{{ username }}</span></p>
+            </div>
+        </div>
+
+        <div class="table-responsive bg-white shadow-sm rounded-3 p-3">
+            <table class="table table-hover align-middle m-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="text-start ps-3">Symbol</th>
+                        <th scope="col" class="text-start">Name</th>
+                        <th scope="col" class="text-end">Shares</th>
+                        <th scope="col" class="text-end">Current Price</th>
+                        <th scope="col" class="text-end pe-3">Total Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for holding in holdings %}
+                        <tr>
+                            <td class="text-start fw-bold text-uppercase ps-3">{{ holding.symbol }}</td>
+                            <td class="text-start text-muted">{{ holding.name }}</td>
+                            <td class="text-end">{{ holding.shares }}</td>
+                            <td class="text-end">{{ holding.price | usd }}</td>
+                            <td class="text-end fw-semibold text-dark pe-3">
+                                {{ holding.total | usd }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <td colspan="4" class="text-end text-muted fw-semibold">Cash Available</td>
+                        <td class="text-end text-muted fw-semibold pe-3">{{ cash | usd }}</td>
+                    </tr>
+
+                    <tr class="table-light border-top border-dark-subtle">
+                        <td colspan="4" class="text-end fw-bold fs-5">GRAND TOTAL</td>
+                        <td class="text-end fw-bold text-primary fs-5 pe-3">{{ grand_total | usd }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

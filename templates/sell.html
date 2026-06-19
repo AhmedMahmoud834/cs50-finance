@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <div class="container py-5">
+        <div class="card mx-auto shadow-sm" style="max-width: 400px;">
+            <div class="card-body p-4 text-center">
+                <h3 class="mb-4 fw-bold">Sell Shares</h3>
+
+                <form action="/sell" method="post">
+                    <div class="mb-3">
+                        <select class="form-select" name="symbol" required>
+                            <option disabled selected value="">Symbol</option>
+                            {% for holding in holdings %}
+                                <option value="{{ holding.symbol }}">{{ holding.symbol }} ({{ holding.shares }} shares)</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <input class="form-control" min="1" name="shares" placeholder="Shares" type="number" required>
+                    </div>
+
+                    <button class="btn btn-danger w-100" type="submit">Sell</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

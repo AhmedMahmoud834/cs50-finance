@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock
+{% endblock %}
+
+{% block main %}
+    <div class="container py-5">
+        <div class="card mx-auto shadow-sm" style="max-width: 500px;">
+            <div class="card-body text-center p-4">
+                <span class="badge bg-primary mb-3">Stock Quote Results</span>
+
+                <h3 class="card-title mb-2 fw-bold">{{ stock.name }}</h3>
+                <h5 class="text-muted mb-4">Symbol: <span class="text-uppercase fw-semibold">{{ stock.symbol }}</span></h5>
+
+                <hr class="my-4">
+
+                <div class="p-3 bg-light rounded-3 mb-3">
+                    <p class="text-secondary small mb-1">Current Price</p>
+                    <h2 class="text-success m-0 fw-bold">
+                        {{ stock.price | usd if stock.price | usd else stock.price }}
+                    </h2>
+                </div>
+
+                <a href="/quote" class="btn btn-outline-secondary w-100 mt-2">Look Up Another Stock</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
