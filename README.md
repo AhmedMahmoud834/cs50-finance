@@ -35,7 +35,7 @@ cs50-finance/
 pip install -r requirements.txt
 
 # Create Database
-sqlite3 finance.db .schema > schema.sql
+sqlite3 finance.db < schema.sql
 
 # Run the app
 flask run

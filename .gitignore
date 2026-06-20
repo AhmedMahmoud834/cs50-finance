@@ -1,2 +1,3 @@
 finance.db
 *.db
+.venv
